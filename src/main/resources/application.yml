@@ -4,19 +4,20 @@ server:
 
 spring:
   application:
-      name: redis-manager
+      name: spring-boot
   http:
       encoding:
         enabled: true
         force: true
         charset: UTF-8
-  # 改成自己的数据库，仅需自己创建数据库即可，相关表会自动生成
-#  datasource:
-#      name: serverbase
-#      driver-class-name: com.mysql.jdbc.Driver
-#      url: jdbc:mysql://localhost:3306/redis_manager_new?useUnicode=true&characterEncoding=utf-8
-#      username: root
-#      password: admin123
+  # 数据源配置相关
+  datasource:
+    name: serverbase
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_boot_db?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: admin123
+  # 模板相关配置
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
@@ -25,5 +26,7 @@ spring:
     encoding: UTF-8
     mode: HTML
 
-mybatis:
-  mapper-locations: classpath*:mappers/*
+  mybatis:
+    mapper-locations: classpath*:mappers/*
+#    configuration:
+#          mapUnderscoreToCamelCase: true
