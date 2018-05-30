@@ -11,15 +11,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.util.List;
 
 /**
+ *
  * ========================
  * Created with IntelliJ IDEA.
- * User：cyy
- * Date：2017/4/6
- * Time：22:03
+ * @Author： Cyy
+ * @Date: 2018/5/30
+ * @Time:  下午8:53
  * ========================
  */
 @Configuration
-
 public class FastJsonConfiguration implements WebMvcConfigurer
 {
     /**
