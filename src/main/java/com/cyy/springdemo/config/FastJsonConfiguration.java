@@ -35,7 +35,7 @@ public class FastJsonConfiguration implements WebMvcConfigurer
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         //修改配置返回内容的过滤
         fastJsonConfig.setSerializerFeatures(
-                SerializerFeature.PrettyFormat,
+//                SerializerFeature.PrettyFormat,
                 SerializerFeature.WriteClassName,
                 SerializerFeature.DisableCircularReferenceDetect,
                 SerializerFeature.WriteMapNullValue,
