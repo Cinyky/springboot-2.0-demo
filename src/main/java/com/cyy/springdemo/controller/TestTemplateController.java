@@ -46,5 +46,4 @@ public class TestTemplateController {
     List<User> getUsers(){
         return userDao.selectByAll();
     }
-
 }
