@@ -32,59 +32,61 @@ public class UserController {
 
     /**
      * 查询用户列表方法
+     *
      * @return
      */
-    @RequestMapping(value ="/login")
-    public String login(UserEntity user, HttpServletRequest request){
+    @RequestMapping(value = "/login")
+    public String login(UserEntity user, HttpServletRequest request) {
         String result = "success";
         Optional<UserEntity> userEntity = userJPA.findOne(new Specification<UserEntity>() {
             @Override
             public Predicate toPredicate(Root<UserEntity> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                query.where(criteriaBuilder.equal(root.get("name"),user.getName()));
+                query.where(criteriaBuilder.equal(root.get("name"), user.getName()));
                 return null;
             }
         });
-        if(!userEntity.isPresent()){
+        if (!userEntity.isPresent()) {
             result = "user is not present";
-        } else if(!user.getPwd().equals(userEntity.get().getPwd())){
+        } else if (!user.getPwd().equals(userEntity.get().getPwd())) {
             result = "user pwd wrong";
         }
         //登录成功
-        if(result.equals("success")){
+        if (result.equals("success")) {
             //将用户写入session
-            request.getSession().setAttribute("_session_user",userEntity);
+            request.getSession().setAttribute("_session_user", userEntity);
         }
         return result;
     }
 
     /**
      * 查询用户列表方法
+     *
      * @return
      */
-    @RequestMapping(value ="/list" ,method = RequestMethod.GET)
-    public List<UserEntity> list(){
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<UserEntity> list() {
         return userJPA.findAll();
     }
 
     /**
      * 添加、更新用户方法
+     *
      * @param entity
      * @return
      */
-    @RequestMapping(value = "/save",method = RequestMethod.GET)
-    public UserEntity save(UserEntity entity)
-    {
+    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    public UserEntity save(UserEntity entity) {
         return userJPA.save(entity);
     }
 
     /**
      * 删除用户方法
+     *
      * @param id 用户编号
      * @return
      */
-    @RequestMapping(value = "/delete",method = RequestMethod.GET)
-    public List<UserEntity> delete(Long id)
-    {
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public List<UserEntity> delete(Long id) {
         userJPA.deleteById(id);
         return userJPA.findAll();
     }

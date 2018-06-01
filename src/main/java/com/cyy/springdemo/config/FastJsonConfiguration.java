@@ -11,19 +11,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.util.List;
 
 /**
- *
  * ========================
  * Created with IntelliJ IDEA.
+ *
  * @Author： Cyy
  * @Date: 2018/5/30
- * @Time:  下午8:53
+ * @Time: 下午8:53
  * ========================
  */
 @Configuration
-public class FastJsonConfiguration implements WebMvcConfigurer
-{
+public class FastJsonConfiguration implements WebMvcConfigurer {
     /**
      * 修改自定义消息转换器
+     *
      * @param converters 消息转换器列表
      */
     @Override

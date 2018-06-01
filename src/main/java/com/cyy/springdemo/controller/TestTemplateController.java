@@ -22,28 +22,28 @@ public class TestTemplateController {
 
     @RequestMapping("/")
     @ResponseBody
-    Person home(){
-        Person p = new Person("1",1);
+    Person home() {
+        Person p = new Person("1", 1);
         return p;
     }
 
 
     @RequestMapping("/index")
-    String template(Model model){
-        Person p = new Person("1",1);
+    String template(Model model) {
+        Person p = new Person("1", 1);
         List<Person> people = new ArrayList<>();
-        Person p1 = new Person("1",1);
-        Person p2 = new Person("2",2);
+        Person p1 = new Person("1", 1);
+        Person p2 = new Person("2", 2);
         people.add(p1);
         people.add(p2);
-        model.addAttribute("singlePerson",p);
-        model.addAttribute("people",people);
+        model.addAttribute("singlePerson", p);
+        model.addAttribute("people", people);
         return "index";
     }
 
     @RequestMapping("/users")
     @ResponseBody
-    List<User> getUsers(){
+    List<User> getUsers() {
         return userDao.selectByAll();
     }
 }

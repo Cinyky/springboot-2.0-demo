@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Person {
     String name;
-    @JSONField(serialize=false)
+    @JSONField(serialize = false)
     int age;
 
     @JSONField(format = "yyyy-MM-dd HH:mm")

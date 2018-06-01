@@ -7,9 +7,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.io.Serializable;
 
 public interface UserJPA extends
-        JpaRepository<UserEntity,Long>,
+        JpaRepository<UserEntity, Long>,
         JpaSpecificationExecutor<UserEntity>,
-        Serializable
-{
+        Serializable {
 
 }

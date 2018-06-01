@@ -12,7 +12,6 @@ import java.util.List;
 @Mapper
 public interface IUserDao {
     /**
-     *
      * @param user
      * @return
      */
@@ -20,7 +19,7 @@ public interface IUserDao {
     Boolean insertUser(User user);
 
     @Select("select * from user where id = #{id}")
-    List<User> selectById(@Param("id")String id);
+    List<User> selectById(@Param("id") String id);
 
     @Select("select * from user")
     List<User> selectByAll();
