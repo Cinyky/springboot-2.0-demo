@@ -1,5 +1,6 @@
 package com.cyy.springdemo.config;
 
+import com.cyy.springdemo.Intreceptor.LoggerInterceptor;
 import com.cyy.springdemo.Intreceptor.SessionUserIntreceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -10,5 +11,7 @@ public class SessionIntreceptorConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SessionUserIntreceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new LoggerInterceptor()).addPathPatterns("/**");
+
     }
 }

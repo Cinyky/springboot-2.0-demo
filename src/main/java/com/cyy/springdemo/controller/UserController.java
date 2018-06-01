@@ -7,6 +7,7 @@ import com.cyy.springdemo.model.User;
 import com.cyy.springdemo.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
     @Autowired
@@ -36,6 +37,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/login")
+    @ResponseBody
     public String login(UserEntity user, HttpServletRequest request) {
         String result = "success";
         Optional<UserEntity> userEntity = userJPA.findOne(new Specification<UserEntity>() {
@@ -64,6 +66,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
     public List<UserEntity> list() {
         return userJPA.findAll();
     }
@@ -75,6 +78,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @ResponseBody
     public UserEntity save(UserEntity entity) {
         return userJPA.save(entity);
     }
@@ -86,9 +90,26 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @ResponseBody
     public List<UserEntity> delete(Long id) {
         userJPA.deleteById(id);
         return userJPA.findAll();
     }
+
+    /**
+     * 初始化登录页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/login_view", method = RequestMethod.GET)
+    public String login_view() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index() {
+        return "index";
+    }
+
 
 }
