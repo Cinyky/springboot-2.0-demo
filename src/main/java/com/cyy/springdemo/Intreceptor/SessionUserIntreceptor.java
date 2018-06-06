@@ -21,7 +21,7 @@ public class SessionUserIntreceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         System.out.println(request.getRequestURI());
         //登录不做拦截
-        if (request.getRequestURI().equals("/user/login") || request.getRequestURI().equals("/user/login_view")) {
+        if (request.getRequestURI().equals("/user/login") || request.getRequestURI().equals("/user/login_view") || request.getRequestURI().contains("/web/resources")) {
             return true;
         }
         //验证session是否存在
