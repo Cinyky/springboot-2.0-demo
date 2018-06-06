@@ -20,7 +20,7 @@ import java.util.UUID;
  * ========================
  */
 @Controller
-public class UploadController {
+public class UploadController  extends IController{
     /**
      * 提取上传方法为公共方法
      * @param uploadDir 上传文件目录

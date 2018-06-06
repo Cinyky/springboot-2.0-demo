@@ -2,6 +2,8 @@ package com.cyy.springdemo.controller;
 
 import com.cyy.springdemo.jpa.UserJPA;
 import com.cyy.springdemo.model.UserEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
@@ -19,11 +21,9 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController  extends IController{
     @Autowired
     private UserJPA userJPA;
-
-
     /**
      * 查询用户列表方法
      *
@@ -50,6 +50,7 @@ public class UserController {
             //将用户写入session
             request.getSession().setAttribute("_session_user", userEntity);
         }
+        logger.info(result);
         return "upload_index";
     }
 

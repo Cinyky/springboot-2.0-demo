@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping("/index")
-public class IndexController {
+public class IndexController extends IController{
 
     @RequestMapping(value = "/logger",method = RequestMethod.GET)
     @ResponseBody
