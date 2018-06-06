@@ -1,26 +1,19 @@
 package com.cyy.springdemo.controller;
 
-import com.cyy.springdemo.dao.IUserDao;
 import com.cyy.springdemo.jpa.UserJPA;
-import com.cyy.springdemo.model.Person;
-import com.cyy.springdemo.model.User;
 import com.cyy.springdemo.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +30,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/login")
-    @ResponseBody
+//    @ResponseBody
     public String login(UserEntity user, HttpServletRequest request) {
         String result = "success";
         Optional<UserEntity> userEntity = userJPA.findOne(new Specification<UserEntity>() {
@@ -57,7 +50,7 @@ public class UserController {
             //将用户写入session
             request.getSession().setAttribute("_session_user", userEntity);
         }
-        return result;
+        return "upload_index";
     }
 
     /**

@@ -10,6 +10,11 @@ spring:
         enabled: true
         force: true
         charset: UTF-8
+      servelet:
+        multipart:
+          max-file-size: 10MB
+          max-request-size: 10MB
+          enabled: true
   # 数据源配置相关
   datasource:
      #简略版datasource
