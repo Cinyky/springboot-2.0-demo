@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * ========================
  * Created with IntelliJ IDEA.
- *
+ * 会话拦截器
+ * 没有登录成功的用户除了登录&资源无法访问其他页面
  * @Author： Cyy
  * @Date: 2018/6/1
  * @Time: 上午11:16
@@ -21,7 +22,7 @@ public class SessionUserIntreceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         System.out.println(request.getRequestURI());
         //登录不做拦截
-        if (request.getRequestURI().equals("/user/login") || request.getRequestURI().equals("/user/login_view") || request.getRequestURI().contains("/web/resources")) {
+        if (request.getRequestURI().equals("/user/login") || request.getRequestURI().equals("/user/login_view")  || request.getRequestURI().equals("/test") || request.getRequestURI().contains("/web/resources")) {
             return true;
         }
         //验证session是否存在

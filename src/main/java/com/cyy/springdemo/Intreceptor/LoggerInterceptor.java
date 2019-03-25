@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * ========================
  * Created with IntelliJ IDEA.
+ * 日志拦截器
+ * 访问请求纪录日志
  * @Author： Cyy
  * @Date: 2018/6/1
  * @Time:  下午5:16
