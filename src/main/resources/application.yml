@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-      name: spring-boot
+    name: spring-boot-demo
   http:
       encoding:
         enabled: true
@@ -75,3 +75,43 @@ config:
   druid:
     loginUsername: admin
     loginPassword: admin123
+
+# actuator管理节点配置
+management:
+  endpoints:
+    web:
+      # actuator的前缀地址
+      base-path: /actuator
+      # 开放指定节点
+      exposure:
+        include:
+          - health
+          - info
+          - mappings
+          - env
+          - shutdown
+      # 自定义路径映射
+      path-mapping:
+        # key=>value形式，原映射路径=>新映射路径
+        health: healthcheck
+  # 显示详细健康信息
+  endpoint:
+    health:
+      show-details: always
+    # 开启远程关闭服务
+    shutdown:
+      enabled: true
+  # 修改监控服务端的端口号
+  server:
+    port: 8001
+
+  #配置redis数据库连接
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    pool:
+      max-idle: 20
+      min-idle: 1
+      max-active: 20
+      max-wait: 60000
+    database: 0 #默认是索引为的0的数据库

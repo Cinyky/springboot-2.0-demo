@@ -1,5 +1,7 @@
 package com.cyy.springdemo.Intreceptor;
 
+import com.cyy.springdemo.enums.ExcludeUri;
+import com.cyy.springdemo.enums.SessionCheckType;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,8 +23,32 @@ public class SessionUserIntreceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         System.out.println(request.getRequestURI());
-        //登录不做拦截
-        if (request.getRequestURI().equals("/user/login") || request.getRequestURI().equals("/user/login_view")  || request.getRequestURI().equals("/test") || request.getRequestURI().contains("/web/resources")) {
+
+        ExcludeUri[] all = ExcludeUri.getAll();
+        String requestURI = request.getRequestURI();
+        boolean isExcluded = false;
+
+        for (ExcludeUri excludeUri : all) {
+            int type = excludeUri.getType();
+            String value = excludeUri.getValue();
+            SessionCheckType sessionCheckType = SessionCheckType.getByValue(type);
+
+            switch (sessionCheckType) {
+                case EQUAL:
+                    isExcluded = requestURI.equals(value);
+                    break;
+                case CONTAIN:
+                    isExcluded = requestURI.contains(value);
+                    break;
+                default:
+                    break;
+            }
+            if (isExcluded) {
+                break;
+            }
+
+        }
+        if (isExcluded) {
             return true;
         }
         //验证session是否存在
